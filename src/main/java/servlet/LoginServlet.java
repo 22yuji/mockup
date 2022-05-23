@@ -49,17 +49,20 @@ public class LoginServlet extends HttpServlet {
 		 *空文字の時にログイン画面に戻る処理
 		 */
 		if(ParamUtil.isNullOrEmpty(logId)) {
-			if(ParamUtil.isNullOrEmpty(logPass)) {
+			/*if(ParamUtil.isNullOrEmpty(logPass)) {
 				request.setAttribute("passMsg", "PASSは必須です");
-			}
+			}*/
 			request.setAttribute("idMsg", "IDは必須です");
-			request.getRequestDispatcher("/index.jsp").forward(request, response);
-		}else {
-			if(ParamUtil.isNullOrEmpty(logPass)) {
-				request.setAttribute("passMsg", "PASSは必須です");
-				request.getRequestDispatcher("/index.jsp").forward(request, response);
-			}
+			//request.getRequestDispatcher("/index.jsp").forward(request, response);
 		}
+		if(ParamUtil.isNullOrEmpty(logPass)) {
+			request.setAttribute("passMsg", "PASSは必須です");
+			//request.getRequestDispatcher("/index.jsp").forward(request, response);
+		}
+		if(ParamUtil.isNullOrEmpty(logId) || ParamUtil.isNullOrEmpty(logPass)) {
+			request.getRequestDispatcher("/index.jsp").forward(request, response);
+		}
+		
 		
 		LoginService logService = new LoginService();
 		User user = logService.userCheck(logId, logPass);
