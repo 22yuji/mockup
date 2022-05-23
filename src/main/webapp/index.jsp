@@ -16,7 +16,9 @@
 
   <div class="login_form">
     <img src="./images/logo.png" class="login_logo">
-    <p class="error">エラーメッセージ</p>
+    <c:if test="${not empty logMsg}">
+      <p class="error">${logMsg}</p>
+    </c:if>
 
 	<!--"menu.html"-->
     <form action="LoginServlet" method="post">

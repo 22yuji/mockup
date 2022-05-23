@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import entity.User;
+import service.LoginService;
 import util.ParamUtil;
 
 /**
@@ -57,6 +59,14 @@ public class LoginServlet extends HttpServlet {
 				request.setAttribute("passMsg", "PASSは必須です");
 				request.getRequestDispatcher("/index.jsp").forward(request, response);
 			}
+		}
+		
+		LoginService logService = new LoginService();
+		User user = logService.userCheck(logId, logPass);
+		
+		if(user == null) {
+			request.setAttribute("logMsg", "IDまたはパスワードが不正です");
+			request.getRequestDispatcher("/index.jsp").forward(request, response);
 		}
 		
 		request.getRequestDispatcher("/menu.jsp").forward(request, response);
