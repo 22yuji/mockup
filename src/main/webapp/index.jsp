@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,12 +24,16 @@
         <div class="cp_iptxt">
           <input class="base_input" type="text" name="loginId" placeholder="ID">
           <i class="fa fa-user fa-lg fa-fw" aria-hidden="true"></i>
-          <div class="error">エラーメッセージ</div>
+          <c:if test="${not empty idMsg}">
+          <div class="error"><p>${idMsg}</p></div>
+          </c:if>
         </div>
 
         <div>
           <input class="base_input" type="password" name="pass" placeholder="PASS">
-          <div class="error">エラーメッセージ</div>
+          <c:if test="${not empty passMsg}">
+          <div class="error"><p>${passMsg}</p></div>
+          </c:if>
         </div>
       </fieldset>
       <button class="logout_btn" type="submit">ログイン</button>
