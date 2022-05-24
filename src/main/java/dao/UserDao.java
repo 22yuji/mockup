@@ -23,7 +23,7 @@ public class UserDao {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                return new User(rs.getString("login_id"), rs.getString("password"));
+                return new User(rs.getString("login_id"), rs.getString("password"), rs.getString("name"));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
