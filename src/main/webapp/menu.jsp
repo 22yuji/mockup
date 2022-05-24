@@ -36,7 +36,7 @@
 
     <div class="btn"><a class="basic_btn regist" href="insert.jsp">新規登録</a></div>
     <p>成功メッセージ</p>
-    <form method="get" action="#" class="search_container">
+    <form method="get" action="ProductServlet" class="search_container">
       <input type="text" size="25" placeholder="キーワード検索">
       <input type="submit" value="&#xf002">
     </form>
@@ -131,7 +131,7 @@
             name: "カドケシ",
             price: 150,
             category: "筆記具",
-          },
+          },/*
           {
             ID: "10009",
             name: "アラビックヤマト",
