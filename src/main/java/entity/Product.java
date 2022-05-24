@@ -40,7 +40,7 @@ public class Product {
 		return price;
 	}
 	
-	//categorieIdセッターゲッター
+	//categoryIdセッターゲッター
 	public void setCtId(int ctId) {
 		this.ctId = ctId;	
 	}

@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.util.Enumeration;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,8 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import entity.Product;
 import entity.User;
 import service.LoginService;
+import service.ProductService;
 import util.ParamUtil;
 
 /**
@@ -85,7 +88,9 @@ public class LoginServlet extends HttpServlet {
 			request.setAttribute("logMsg", "IDまたはパスワードが不正です");
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 		}
-		
+		ProductService proService = new ProductService();
+		List<Product> product = proService.searchAll();
+		session.setAttribute("productList", product);
 		session.setAttribute("uName", user.getName());
 		request.getRequestDispatcher("/menu.jsp").forward(request, response);
 	}

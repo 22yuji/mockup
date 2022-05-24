@@ -6,11 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<!--
 <c:if test="${empty uName}">
 <meta http-equiv="Refresh" content="0;URL=index.jsp">
 </c:if>
--->
 <title>メニュー</title>
 <link href="css/commons.css" rel="stylesheet">
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -64,15 +62,17 @@
         </tr>
       </thead>
       <tbody>
-        <template v-for="product in products">
+        <!--<template v-for="product in products"></template>-->
+        <c:forEach var="product" items="${productList}">
+        
           <tr>
-            <td>{{ product.ID }}</td>
-            <td>{{ product.name }}</td>
-            <td>{{ product.price }}</td>
-            <td>{{ product.category }}</td>
+            <td>${product.proId}</td>
+            <td>${product.proName}</td>
+            <td>${product.price}</td>
+            <td>${product.ctId}</td>
             <td><a class="detail_btn" href="./detail.jsp">詳細</a></td>
           </tr>
-        </template>
+        </c:forEach>
       </tbody>
     </table>
   </div>
