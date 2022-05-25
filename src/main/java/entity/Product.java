@@ -4,12 +4,12 @@ public class Product {
 	private int proId;
 	private String proName;
 	private int price;
-	private int ctId;
+	private String ctId;
 	private String description;
 	
 	public Product() {
 	}
-	public Product(int proId, String proName, int price, int ctId) {
+	public Product(int proId, String proName, int price, String ctId) {
 		this.proId = proId;
 		this.proName = proName;
 		this.price = price;
@@ -41,10 +41,10 @@ public class Product {
 	}
 	
 	//categoryIdセッターゲッター
-	public void setCtId(int ctId) {
+	public void setCtId(String ctId) {
 		this.ctId = ctId;	
 	}
-	public int getCtId() {
+	public String getCtId() {
 		return ctId;
 	}
 	
