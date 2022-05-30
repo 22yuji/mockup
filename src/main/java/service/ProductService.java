@@ -18,4 +18,15 @@ public class ProductService {
 
         return null;
     }
+	
+	public List<Product> searchKey(String keyWord) {
+        try (Connection con = DbUtil.getConnection()) {
+        	ProductDao productDao = new ProductDao(con);
+            return productDao.searchKey(keyWord);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 }

@@ -33,9 +33,11 @@
     <hr>
 
     <div class="btn"><a class="basic_btn regist" href="insert.jsp">新規登録</a></div>
-    <p>成功メッセージ</p>
+    <c:if test="${not empty msg}">
+    	<p>${msg}</p>
+    </c:if>
     <form method="get" action="ProductServlet" class="search_container">
-      <input type="text" size="25" placeholder="キーワード検索">
+      <input type="text" name="keyword" size="25" placeholder="キーワード検索">
       <input type="submit" value="&#xf002">
     </form>
 

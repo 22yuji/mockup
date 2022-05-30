@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import entity.Product;
 import service.ProductService;
+import util.ParamUtil;
 
 /**
  * Servlet implementation class ProductServlet
@@ -34,9 +35,19 @@ public class ProductServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		
+		String KeyWord = request.getParameter("keyword");
 		ProductService proService = new ProductService();
-		List<Product> product = proService.searchAll();
-		request.setAttribute("productList", product);
+		
+		if(ParamUtil.isNullOrEmpty(KeyWord)) {
+			List<Product> product = proService.searchAll();
+			request.setAttribute("productList", product);
+		}else {
+			List<Product> product = proService.searchKey(KeyWord);
+			/*if(product.equals(null)) {
+				request.setAttribute("msg", "結果なし");
+			}*/
+			request.setAttribute("productList", product);
+		}
         request.getRequestDispatcher("/menu.jsp").forward(request, response);
 	}
 
