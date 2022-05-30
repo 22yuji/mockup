@@ -9,11 +9,21 @@ public class Product {
 	
 	public Product() {
 	}
+	public Product(int proId) {
+		this.proId = proId;
+	}
 	public Product(int proId, String proName, int price, String ctId) {
 		this.proId = proId;
 		this.proName = proName;
 		this.price = price;
 		this.ctId = ctId;
+	}
+	public Product(int proId, String proName, int price, String ctId, String desc) {
+		this.proId = proId;
+		this.proName = proName;
+		this.price = price;
+		this.ctId = ctId;
+		this.description = desc;
 	}
 	
 	//proIdセッターゲッター

@@ -32,28 +32,36 @@
     </div>
   
     <div class="form_body">
-      <p class="error">エラーメッセージ</p>
+    　<c:if test="${not empty InsertMsg}">
+      	<p class="error">${InsertMsg}</p>
+  	　</c:if>
   
-      <form action="menu.jsp" method="get">
+      <form action="InsertServlet" method="get">
         <fieldset class="label-130">
           <div>
             <label class="required">商品ID</label>
-            <input type="text" name="loginId" class="base-text">
-            <span class="error">エラーメッセージ</span>
+            <input type="text" name="proId" class="base-text">
+            <c:if test="${not empty IdMsg}">
+		      <span class="error">${IdMsg}</span>
+		    </c:if>
           </div>
           <div>
             <label class="required">商品名</label>
-            <input type="text" name="userName" class="base-text">
-            <span class="error">エラーメッセージ</span>
+            <input type="text" name="proName" class="base-text">
+            <c:if test="${not empty NameMsg}">
+		      <span class="error">${NameMsg}</span>
+		    </c:if>
           </div>
           <div>
             <label class="required">単価</label>
-            <input type="text" name="tel" class="base-text">
-            <span class="error">エラーメッセージ</span>
+            <input type="text" name="pri" class="base-text">
+            <c:if test="${not empty PriceMsg}">
+		      <span class="error">${PriceMsg}</span>
+		    </c:if>
           </div>
           <div class="select_block">
             <label class="required">カテゴリ</label>
-            <select name="roleId" class="base-text">
+            <select name="cateId" class="base-text">
               <option value="1">筆記具</option>
               <option value="2">紙製品</option>
               <option value="3">事務消耗品</option>
@@ -68,7 +76,6 @@
           <div>
             <label>画像</label>
             <input type="file" name="file">
-            <span class="error">エラーメッセージ</span>
           </div>
         </fieldset>
         <div class="btns">

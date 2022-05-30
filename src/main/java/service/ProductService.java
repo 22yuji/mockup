@@ -29,4 +29,26 @@ public class ProductService {
 
         return null;
     }
+	
+	public Product searchId(int proId) {
+		try (Connection con = DbUtil.getConnection()) {
+        	ProductDao productDao = new ProductDao(con);
+            return productDao.searchId(proId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+	}
+	
+	public Product insertProduct(int proId, int cateId, String proName, int price, String desc) {
+        try (Connection con = DbUtil.getConnection()) {
+        	ProductDao productDao = new ProductDao(con);
+            return productDao.insertProduct(proId, cateId, proName, price, desc);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 }
