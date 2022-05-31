@@ -41,6 +41,28 @@ public class ProductService {
         return null;
 	}
 	
+	public Product searchDetail(int proId) {
+		try (Connection con = DbUtil.getConnection()) {
+        	ProductDao productDao = new ProductDao(con);
+            return productDao.searchDetail(proId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+	}
+	
+	public Product destroyPro(int proId) {
+		try (Connection con = DbUtil.getConnection()) {
+        	ProductDao productDao = new ProductDao(con);
+            return productDao.destroyPro(proId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+	}
+	
 	public Product insertProduct(int proId, int cateId, String proName, int price, String desc) {
         try (Connection con = DbUtil.getConnection()) {
         	ProductDao productDao = new ProductDao(con);

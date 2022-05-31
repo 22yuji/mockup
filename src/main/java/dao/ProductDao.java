@@ -18,6 +18,10 @@ public class ProductDao {
 			+ "JOIN categories c ON p.category_id = c.id "
 			+ " WHERE p.name LIKE ? OR c.name LIKE ? ORDER BY p.product_id ";
 	private static final String SQL_SELECT_ID = "SELECT product_id FROM products WHERE product_id = ?";
+	private static final String SQL_SELECT_ID_DETAIL = "SELECT p.product_id, p.name, p.price, c.name c_name, description " 
+			+ "FROM products p JOIN categories c ON p.category_id = c.id " 
+			+ "WHERE product_id = ?";
+	private static final String SQL_DELETE = "DELETE FROM products WHERE product_id = ?";
 	private static final String SQL_INSERT = "INSERT INTO products (product_id, category_id, name, price, description) VALUES (?, ?, ?, ?, ?)";
 	public ProductDao(Connection con) {
 		this.con = con;
@@ -65,8 +69,36 @@ public class ProductDao {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                return new Product(rs.getInt("product_id"));
+                /*return new Product(rs.getInt("product_id"), rs.getString("name"), rs.getInt("price"),
+                		rs.getString("c_name"), rs.getString("description"));*/
+            	return new Product(rs.getInt("product_id"));
             }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+		return null;
+	}
+	
+	public Product searchDetail(int proId) {
+		try (PreparedStatement stmt = con.prepareStatement(SQL_SELECT_ID_DETAIL)) {
+            stmt.setInt(1, proId);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return new Product(rs.getInt("product_id"), rs.getString("name"), rs.getInt("price"),
+                		rs.getString("c_name"), rs.getString("description"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+		return null;
+	}
+	
+	public Product destroyPro(int proId) {
+		try (PreparedStatement stmt = con.prepareStatement(SQL_DELETE)) {
+			stmt.setInt(1, proId);
+            ResultSet rs = stmt.executeQuery();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

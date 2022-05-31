@@ -72,7 +72,7 @@
             <td>${product.proName}</td>
             <td>${product.price}</td>
             <td>${product.ctId}</td>
-            <td><a class="detail_btn" href="./detail.jsp">詳細</a></td>
+            <td><a class="detail_btn" href="DetailServlet?productId=${product.proId}">詳細</a></td>
           </tr>
         </c:forEach>
       </tbody>

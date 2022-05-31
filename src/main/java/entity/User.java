@@ -4,6 +4,7 @@ public class User {
 	private String login_id;
 	private String pass;
 	private String name;
+	private int role = 0;
 	
 	public User() {
 	}
