@@ -58,7 +58,7 @@ ${product.description}
         <div>
           <div class="btns">
             <input type="button" onclick="openModal()" value="削除" class="basic_btn">
-            <input type="button" onclick="location.href='/Servlet/EditServlet'" value="編集" class="basic_btn">
+            <input type="button" onclick="location.href='./EditServlet?proId=${product.proId}'" value="編集" class="basic_btn">
             <input type="button" onclick="location.href='./menu.jsp'" value="戻る" class="cancel_btn">
           </div>
           <div id="modal">
