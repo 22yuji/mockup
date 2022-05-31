@@ -49,15 +49,19 @@ public class DetailServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		
-		String proId = request.getParameter("proId");
-		int prId = ParamUtil.checkAndParseInt(proId);
-		
-		ProductService proService = new ProductService();
-		Product product = proService.destroyPro(prId);
-		
-		request.setAttribute("InMsg", "削除に成功しました");
-		request.getRequestDispatcher("/menu.jsp").forward(request, response);
+		try {
+			String proId = request.getParameter("proId");
+			int prId = ParamUtil.checkAndParseInt(proId);
+			
+			ProductService proService = new ProductService();
+			Product product = proService.destroyPro(prId);
+			
+			request.setAttribute("InMsg", "削除に成功しました");
+			request.getRequestDispatcher("/menu.jsp").forward(request, response);
+		}catch(Exception e) {
+			request.setAttribute("InMsg", "削除に失敗しました");
+			request.getRequestDispatcher("/detail.jsp").forward(request, response);
+		}
 	}
 
 }

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<c:if test="${empty uName}">
+<c:if test="${empty user}">
 <meta http-equiv="Refresh" content="0;URL=index.jsp">
 </c:if>
 <title>メニュー</title>
@@ -19,8 +19,8 @@
     <div class="header">
       <h1 class="site_logo"><a href="menu.jsp">商品管理システム</a></h1>
       <div class="user">
-      	<c:if test="${not empty uName}">
-      		<p class="user_name">${uName}さん、こんにちは</p>
+      	<c:if test="${not empty user}">
+      		<p class="user_name">${user.name}さん、こんにちは</p>
     	</c:if>
         
         <form class="logout_form" action="logout.jsp" method="get">
@@ -31,8 +31,9 @@
     </div>
 
     <hr>
-
+	<c:if test="${user.role == 1}">
     <div class="btn"><a class="basic_btn regist" href="insert.jsp">新規登録</a></div>
+    </c:if>
     <c:if test="${not empty InMsg}">
     	<p>${InMsg}</p>
     </c:if>

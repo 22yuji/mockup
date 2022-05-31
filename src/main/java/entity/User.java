@@ -8,10 +8,11 @@ public class User {
 	
 	public User() {
 	}
-	public User(String login_id, String pass, String name) {
+	public User(String login_id, String pass, String name, int role) {
 		this.login_id = login_id;
 		this.pass = pass;
 		this.name = name;
+		this.role = role;
 	}
 	
 	public void setLoginId(String login_id) {
@@ -33,5 +34,12 @@ public class User {
 	}
 	public String getName() {
 		return name;
+	}
+	
+	public void setRole(int role) {
+		this.role = role;
+	}
+	public int getRole() {
+		return role;
 	}
 }

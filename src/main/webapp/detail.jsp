@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,8 +14,8 @@
   <div class="header">
     <h1 class="site_logo"><a href="menu.jsp">商品管理システム</a></h1>
     <div class="user">
-      <c:if test="${not empty uName}">
-      	<p class="user_name">${uName}さん、こんにちは</p>
+      <c:if test="${not empty user}">
+      	<p class="user_name">${user.name}さん、こんにちは</p>
 	  </c:if>
       <form class="logout_form" action="logout.jsp" method="get">
         <button class="logout_btn" type="submit">
@@ -57,8 +59,10 @@ ${product.description}
         </fieldset>
         <div>
           <div class="btns">
-            <input type="button" onclick="openModal()" value="削除" class="basic_btn">
-            <input type="button" onclick="location.href='./EditServlet?proId=${product.proId}'" value="編集" class="basic_btn">
+          	<c:if test="${user.role == 1}">
+              <input type="button" onclick="openModal()" value="削除" class="basic_btn">
+              <input type="button" onclick="location.href='./EditServlet?proId=${product.proId}'" value="編集" class="basic_btn">
+            </c:if>
             <input type="button" onclick="location.href='./menu.jsp'" value="戻る" class="cancel_btn">
           </div>
           <div id="modal">

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,8 +13,8 @@
   <div class="header">
     <h1 class="site_logo"><a href="menu.jsp">商品管理システム</a></h1>
     <div class="user">
-      <c:if test="${not empty uName}">
-      	<p class="user_name">${uName}さん、こんにちは</p>
+      <c:if test="${not empty user}">
+      	<p class="user_name">${user.name}さん、こんにちは</p>
       </c:if>
       <form class="logout_form" action="logout.jsp" method="get">
         <button class="logout_btn" type="submit">
@@ -25,13 +27,16 @@
 
   <div class="insert">
     <div class="form_body">
-      <p class="error">エラーメッセージ</p>
+      <c:if test="${not empty InsertMsg}">
+      	<p class="error">${UpdateMsg}</p>
+  	　</c:if>
 
       <form action="RenewalServlet" method="get">
         <fieldset class="label-130">
           <div>
             <label>商品ID</label>
             <input type="text" name="proId" value="${product.proId}" class="base-text">
+            <input type="hidden" name="hydeId" value="${product.proId}" class="base-text">
             <c:if test="${not empty IdMsg}">
 		      <span class="error">${IdMsg}</span>
 		    </c:if>

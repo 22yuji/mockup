@@ -23,6 +23,8 @@ public class ProductDao {
 			+ "WHERE product_id = ?";
 	private static final String SQL_DELETE = "DELETE FROM products WHERE product_id = ?";
 	private static final String SQL_INSERT = "INSERT INTO products (product_id, category_id, name, price, description) VALUES (?, ?, ?, ?, ?)";
+	private static final String SQL_UPDATE = "UPDATE products SET product_id = ?, name = ?, price = ?, category_id = ?, description = ? "
+			+ "WHERE product_id = ?";
 	public ProductDao(Connection con) {
 		this.con = con;
 	}
@@ -114,10 +116,22 @@ public class ProductDao {
 			stmt.setString(5, desc);
             ResultSet rs = stmt.executeQuery();
 
-            /*while(rs.next()) {
-                Product p = new Product(rs.getInt("product_id"), rs.getString("name"),
-                		rs.getInt("price"), rs.getString("c_name"));
-            }*/
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+		return null;
+	}
+	
+	public Product updatePro(int proId, int cateId, String proName, int price, String desc) {
+		try (PreparedStatement stmt = con.prepareStatement(SQL_UPDATE)) {
+			stmt.setInt(1, proId);
+			stmt.setString(2, proName);
+			stmt.setInt(3, price);
+			stmt.setInt(4, cateId);
+			stmt.setString(5, desc);
+			stmt.setInt(6, proId);
+            ResultSet rs = stmt.executeQuery();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

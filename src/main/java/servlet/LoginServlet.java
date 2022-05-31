@@ -91,7 +91,7 @@ public class LoginServlet extends HttpServlet {
 		ProductService proService = new ProductService();
 		List<Product> product = proService.searchAll();
 		session.setAttribute("productList", product);
-		session.setAttribute("uName", user.getName());
+		session.setAttribute("user", user);
 		request.getRequestDispatcher("/menu.jsp").forward(request, response);
 	}
 
