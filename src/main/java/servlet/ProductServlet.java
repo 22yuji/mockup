@@ -43,9 +43,10 @@ public class ProductServlet extends HttpServlet {
 			request.setAttribute("productList", product);
 		}else {
 			List<Product> product = proService.searchKey(KeyWord);
-			/*if(product.equals(null)) {
-				request.setAttribute("msg", "結果なし");
-			}*/
+			if(product.size() == 0) {
+				request.setAttribute("InMsg", "検索結果がありませんでした");
+				request.getRequestDispatcher("/menu.jsp").forward(request, response);
+			}
 			request.setAttribute("productList", product);
 		}
         request.getRequestDispatcher("/menu.jsp").forward(request, response);
